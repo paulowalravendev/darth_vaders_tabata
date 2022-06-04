@@ -1,5 +1,6 @@
-import 'package:darth_vaders_tabata/app/routes/routes.dart';
 import 'package:get/get.dart';
+
+import 'package:darth_vaders_tabata/app/routes/routes.dart';
 
 class SplashController extends GetxController {
   var showNextPage = false.obs;
