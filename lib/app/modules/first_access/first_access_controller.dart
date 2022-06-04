@@ -3,6 +3,6 @@ import 'package:get/get.dart';
 
 class FirstAccessController extends GetxController {
   void createTabata() {
-    Get.toNamed(Routes.CREATE_TABATA);
+    Get.toNamed(Routes.TABATA_FEEDBACK);
   }
 }
