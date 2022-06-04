@@ -15,7 +15,7 @@ class DefaultButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.defaultTextColors,
+            color: AppColors.defaultButtonBackground,
             border: Border.all(),
             borderRadius: BorderRadius.circular(24)),
         width: double.maxFinite,
