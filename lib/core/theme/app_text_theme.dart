@@ -20,4 +20,12 @@ abstract class AppTextTheme {
   static Widget Subtitle(String value) => Text(value,
       style: _textStyle.copyWith(fontWeight: FontWeight.w700, fontSize: 14),
       textAlign: TextAlign.center);
+
+  static Widget HeaderInfoLabel(String value) => Text(value,
+      style: _textStyle.copyWith(fontWeight: FontWeight.w600, fontSize: 12),
+      textAlign: TextAlign.center);
+
+  static Widget HeaderInfoValue(String value) => Text(value,
+      style: _textStyle.copyWith(fontWeight: FontWeight.w700, fontSize: 20),
+      textAlign: TextAlign.center);
 }
