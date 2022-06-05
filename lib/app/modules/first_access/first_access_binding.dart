@@ -6,6 +6,5 @@ class FirstAccessBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<FirstAccessController>(() => FirstAccessController());
-    Get.lazyPut<TabataService>(() => TabataServiceImpl());
   }
 }

@@ -1,3 +1,4 @@
+import 'package:darth_vaders_tabata/app/data/enums/feedback_reaction.dart';
 import 'package:darth_vaders_tabata/app/data/models/tabata_model.dart';
 import 'package:darth_vaders_tabata/app/modules/training_feedback/training_feedback_controller.dart';
 import 'package:darth_vaders_tabata/app/widgets/default_app_bar_widget.dart';
@@ -24,8 +25,66 @@ class TrainingFeedbackPage extends GetView<TrainingFeedbackController> {
       ),
       body: Column(
         children: [
-          showTabataFeedback(),
+          showTabataDetails(),
           writeTabataFeedback(),
+        ],
+      ),
+    );
+  }
+
+  Container showTabataDetails() {
+    return Container(
+      color: AppColors.defaultButtonBackgroundColor,
+      child: Column(
+        children: [
+          Center(
+            child: (AppTextTheme.Header("Treino Finalizado!")),
+          ),
+          SizedBox(
+            height: 32,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+              ),
+              HeaderInfoWidget(
+                icon: Icon(
+                  Icons.sports_gymnastics_outlined,
+                  color: AppColors.defaultTextColors,
+                ),
+                label: "Séries",
+                value: currentTabata.amountSerie.toString(),
+              ),
+              HeaderInfoWidget(
+                icon: Icon(
+                  Icons.restart_alt,
+                  color: AppColors.defaultTextColors,
+                ),
+                label: "Cycles",
+                value: currentTabata.amountCycles.toString(),
+              ),
+              HeaderInfoWidget(
+                icon: Icon(
+                  Icons.access_time_rounded,
+                  color: AppColors.defaultTextColors,
+                ),
+                label: "Tempo Total",
+                value: '${(Duration(seconds: currentTabata.totalTime))}'
+                    .split('.')[0]
+                    .padLeft(8, '0')
+                    .replaceFirst("00:", ""),
+              ),
+              const Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 24,
+          )
         ],
       ),
     );
@@ -69,7 +128,10 @@ class TrainingFeedbackPage extends GetView<TrainingFeedbackController> {
                   ],
                 ),
               ),
-              Container(
+              GestureDetector(
+                onTap: () {
+                  controller.setReaction(FeedbackReaction.moderate);
+                },
                 child: Column(
                   children: [
                     Container(
@@ -152,67 +214,9 @@ class TrainingFeedbackPage extends GetView<TrainingFeedbackController> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DefaultButtonWidget(
               label: "Salvar",
-              onTap: () => {},
+              onTap: () => controller.save(),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Container showTabataFeedback() {
-    return Container(
-      color: AppColors.defaultButtonBackgroundColor,
-      child: Column(
-        children: [
-          Center(
-            child: (AppTextTheme.Header("Treino Finalizado!")),
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-              ),
-              HeaderInfoWidget(
-                icon: Icon(
-                  Icons.sports_gymnastics_outlined,
-                  color: AppColors.defaultTextColors,
-                ),
-                label: "Séries",
-                value: currentTabata.amountSerie.toString(),
-              ),
-              HeaderInfoWidget(
-                icon: Icon(
-                  Icons.restart_alt,
-                  color: AppColors.defaultTextColors,
-                ),
-                label: "Cycles",
-                value: currentTabata.amountCycles.toString(),
-              ),
-              HeaderInfoWidget(
-                icon: Icon(
-                  Icons.access_time_rounded,
-                  color: AppColors.defaultTextColors,
-                ),
-                label: "Tempo Total",
-                value: '${(Duration(seconds: currentTabata.totalTime))}'
-                    .split('.')[0]
-                    .padLeft(8, '0')
-                    .replaceFirst("00:", ""),
-              ),
-              const Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 24,
-          )
         ],
       ),
     );
