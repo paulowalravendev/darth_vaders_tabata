@@ -15,26 +15,29 @@ class FirstAccessPage extends GetView<FirstAccessController> {
       backgroundColor: AppColors.defaultBackgroundColors,
       body: Column(
         children: [
-          SizedBox(
-            child: Image.asset(AssetConsts.FIRST_ACCESS_IMAGE),
-          ),
-          Column(
-            children: [
-              const SizedBox(height: 32),
-              AppTextTheme.Header(
-                  "Vamos começar o seu primeiro\nTreino Tabata?"),
-              const SizedBox(height: 8),
-              AppTextTheme.Subtitle(
-                  "No próximo passo você vai criar o Tabata ideal\npara o seu treino."),
-              const SizedBox(height: 48),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: DefaultButtonWidget(
-                  onTap: controller.createTabata,
-                  label: "Criar Tabata",
+          Image.asset(AssetConsts.FIRST_ACCESS_IMAGE),
+          Expanded(
+            child: Column(
+              children: [
+                const SizedBox(height: 32),
+                AppTextTheme.Header(
+                    "Vamos começar o seu primeiro\nTreino Tabata?"),
+                const SizedBox(height: 8),
+                AppTextTheme.Subtitle(
+                    "No próximo passo você vai criar o Tabata ideal\npara o seu treino."),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 32,
+                  ),
+                  child: DefaultButtonWidget(
+                    onTap: controller.createTabata,
+                    label: "Criar Tabata",
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
