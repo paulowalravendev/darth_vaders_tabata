@@ -2,11 +2,17 @@ import 'package:darth_vaders_tabata/app/data/models/tabata_model.dart';
 import 'package:darth_vaders_tabata/app/data/models/training_model.dart';
 
 abstract class TrainingService {
-  TrainingModel createTraining(TabataModel tabata);
+  void createTraining(TabataModel tabata);
+  TrainingModel? getCurrentTraining();
 }
 
 class TrainingServiceImpl implements TrainingService {
+  TrainingModel? _training;
+
   @override
-  TrainingModel createTraining(TabataModel tabata) =>
-      TrainingModel(tabata: tabata, startedAt: DateTime.now());
+  void createTraining(TabataModel tabata) =>
+      _training = TrainingModel(tabata: tabata);
+
+  @override
+  TrainingModel? getCurrentTraining() => _training;
 }
