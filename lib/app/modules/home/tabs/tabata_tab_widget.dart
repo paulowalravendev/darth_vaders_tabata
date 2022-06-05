@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:darth_vaders_tabata/app/data/models/tabata_model.dart';
 import 'package:darth_vaders_tabata/app/modules/home/home_controller.dart';
 import 'package:darth_vaders_tabata/app/widgets/default_button_widget.dart';
 import 'package:darth_vaders_tabata/app/widgets/header_info_widget.dart';
