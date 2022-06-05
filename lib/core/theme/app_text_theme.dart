@@ -13,6 +13,10 @@ abstract class AppTextTheme {
       style: _textStyle.copyWith(fontWeight: FontWeight.w900, fontSize: 20),
       textAlign: TextAlign.center);
 
+  static Widget BigHeader(String value) => Text(value,
+      style: _textStyle.copyWith(fontWeight: FontWeight.w900, fontSize: 64),
+      textAlign: TextAlign.center);
+
   static Widget Button(String value) => Text(value,
       style: _textStyle.copyWith(fontWeight: FontWeight.w700, fontSize: 18),
       textAlign: TextAlign.center);

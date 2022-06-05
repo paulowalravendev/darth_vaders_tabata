@@ -1,12 +1,32 @@
+import 'package:darth_vaders_tabata/app/data/enums/training_status.dart';
+import 'package:darth_vaders_tabata/app/data/models/training_model.dart';
+import 'package:darth_vaders_tabata/app/data/services/training_service.dart';
 import 'package:darth_vaders_tabata/app/routes/routes.dart';
 import 'package:get/get.dart';
 
 class TabataPlayerController extends GetxController {
-  TabataPlayerController();
+  late Rx<TrainingModel> training;
 
-  final _obj = ''.obs;
-  set obj(value) => this._obj.value = value;
-  get obj => this._obj.value;
+  TabataPlayerController() {
+    training = Get.find<TrainingService>().getCurrentTraining()!.obs;
+  }
+
+  @override
+  void onInit() {
+    _ready();
+    super.onInit();
+  }
+
+  void _ready() {
+    training.update((val) {
+      val!.prepare();
+    });
+    Future.delayed(Duration(milliseconds: 2600), () {
+      training.update((val) {
+        training.value.start();
+      });
+    });
+  }
 
   void _onFinished() {
     Get.offNamed(Routes.TABATA_FEEDBACK);
