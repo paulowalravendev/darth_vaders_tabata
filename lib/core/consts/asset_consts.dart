@@ -8,4 +8,7 @@ abstract class AssetConsts {
   static final PROFILE_TAB_ICON = "assets/icons/profile-tab-icon.png";
   static final TIMER_TAB_ICON = "assets/icons/timer-tab-icon.png";
   static final PLAY_ICON = "assets/icons/play-icon.png";
+  static final LIGTH_ICON = "assets/icons/ligth-icon.png";
+  static final MODERATE_ICON = "assets/icons/moderate-icon.png";
+  static final INTENSE_ICON = "assets/icons/intense-icon.png";
 }
