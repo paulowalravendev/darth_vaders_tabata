@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:darth_vaders_tabata/app/modules/home/home_controller.dart';
 import 'package:darth_vaders_tabata/app/modules/home/tabs/tabata_tab_widget.dart';
 import 'package:darth_vaders_tabata/core/consts/asset_consts.dart';
 import 'package:darth_vaders_tabata/core/theme/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeController> {
   var tabs = [
