@@ -17,6 +17,7 @@ class TabataModel {
   }
 
   int _calculateTotalTime() {
-    return 0;
+    return (timeSerie * amountSerie + intervalBetweenCycles) * amountCycles -
+        amountSerie * -1;
   }
 }
