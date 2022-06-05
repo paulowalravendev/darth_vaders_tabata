@@ -1,3 +1,4 @@
+import 'package:darth_vaders_tabata/app/data/models/tabata_model.dart';
 import 'package:darth_vaders_tabata/app/modules/training_feedback/training_feedback_controller.dart';
 import 'package:darth_vaders_tabata/app/widgets/default_app_bar_widget.dart';
 import 'package:darth_vaders_tabata/app/widgets/default_button_widget.dart';
@@ -9,8 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TrainingFeedbackPage extends GetView<TrainingFeedbackController> {
+  late TabataModel currentTabata;
+
   @override
   Widget build(BuildContext context) {
+    currentTabata = controller.getTabata();
+
     return Scaffold(
       backgroundColor: AppColors.defaultBackgroundColors,
       appBar: DefaultAppBarWidget(
@@ -173,29 +178,32 @@ class TrainingFeedbackPage extends GetView<TrainingFeedbackController> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5),
               ),
-              const HeaderInfoWidget(
+              HeaderInfoWidget(
                 icon: Icon(
                   Icons.sports_gymnastics_outlined,
                   color: AppColors.defaultTextColors,
                 ),
                 label: "Séries",
-                value: "20",
+                value: currentTabata.amountSerie.toString(),
               ),
-              const HeaderInfoWidget(
+              HeaderInfoWidget(
                 icon: Icon(
                   Icons.restart_alt,
                   color: AppColors.defaultTextColors,
                 ),
                 label: "Cycles",
-                value: "3",
+                value: currentTabata.amountCycles.toString(),
               ),
-              const HeaderInfoWidget(
+              HeaderInfoWidget(
                 icon: Icon(
                   Icons.access_time_rounded,
                   color: AppColors.defaultTextColors,
                 ),
                 label: "Tempo Total",
-                value: "4:00",
+                value: '${(Duration(seconds: currentTabata.totalTime))}'
+                    .split('.')[0]
+                    .padLeft(8, '0')
+                    .replaceFirst("00:", ""),
               ),
               const Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
