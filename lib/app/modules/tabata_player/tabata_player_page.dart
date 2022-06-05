@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:darth_vaders_tabata/core/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,18 +20,17 @@ class TabataPlayerPage extends GetView<TabataPlayerController> {
               ? Center(
                   child: Lottie.asset(AssetConsts.COUNTDOWN_LOTTIE),
                 )
-              : Player(training: controller.training.value),
+              : controller.training.value.status == TrainingStatus.completed
+                  ? AppTextTheme.BigHeader("ACABOU")
+                  : Player(training: controller.training),
         ),
-        // child: Center(
-        //   child: Lottie.asset(AssetConsts.COUNTDOWN_LOTTIE),
-        // ),
       ),
     );
   }
 }
 
 class Player extends StatelessWidget {
-  final TrainingModel training;
+  final Rx<TrainingModel> training;
 
   const Player({
     Key? key,
@@ -55,7 +53,7 @@ class Player extends StatelessWidget {
             ),
             SizedBox(width: 2),
             AppTextTheme.Header(
-                "${training.currentCycle}/${training.tabata.amountCycles}")
+                "${training.value.currentCycle}/${training.value.tabata.amountCycles}")
           ],
         ),
         Padding(
@@ -67,11 +65,15 @@ class Player extends StatelessWidget {
                 child: Container(
                   width: 260,
                   height: 260,
-                  child: CircularProgressIndicator(
-                    backgroundColor: AppColors.defaultBackgroundColors,
-                    color: AppColors.serieProgressColor,
-                    strokeWidth: 10,
-                    value: 100,
+                  child: Obx(
+                    () => CircularProgressIndicator(
+                      backgroundColor: AppColors.defaultBackgroundColors,
+                      color: AppColors.serieProgressColor,
+                      strokeWidth: 10,
+                      value: training.value.currentSerieSecond * 1.667 / 100,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.serieProgressColor),
+                    ),
                   ),
                 ),
               ),
@@ -83,7 +85,12 @@ class Player extends StatelessWidget {
                     backgroundColor: AppColors.defaultBackgroundColors,
                     strokeWidth: 2,
                     color: AppColors.cycleProgressColor,
-                    value: 100,
+                    value: training.value.amountSerieDone == 0
+                        ? 0
+                        : (training.value.amountSerieDone /
+                            training.value.tabata.amountSerie),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        AppColors.cycleProgressColor),
                   ),
                 ),
               ),
@@ -95,20 +102,21 @@ class Player extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Spacer(),
-                      if (training.mode.type == TrainingModeType.Exercice)
+                      if (training.value.mode.type == TrainingModeType.Exercice)
                         Image.asset(
                           AssetConsts.EXERCICE_TIME_ICON,
                           width: 24,
                           height: 24,
                         ),
-                      if (training.mode.type == TrainingModeType.Rest ||
-                          training.mode.type == TrainingModeType.Preparing)
+                      if (training.value.mode.type == TrainingModeType.Rest ||
+                          training.value.mode.type ==
+                              TrainingModeType.Preparing)
                         Image.asset(
                           AssetConsts.REST_TIME_ICON,
                           width: 24,
                           height: 24,
                         ),
-                      if (training.mode.type == TrainingModeType.Interval)
+                      if (training.value.mode.type == TrainingModeType.Interval)
                         Image.asset(
                           AssetConsts.INTERVAL_TIME_ICON,
                           width: 24,
@@ -118,9 +126,9 @@ class Player extends StatelessWidget {
                         flex: 2,
                       ),
                       AppTextTheme.BigHeader(
-                          training.currentSerieSecond.toString()),
+                          training.value.currentSerieSecond.toString()),
                       SizedBox(height: 23),
-                      AppTextTheme.Button(training.mode.displayMode),
+                      AppTextTheme.Button(training.value.mode.displayMode),
                       SizedBox(height: 23),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -131,8 +139,8 @@ class Player extends StatelessWidget {
                             height: 16,
                           ),
                           SizedBox(width: 2),
-                          AppTextTheme.Button(
-                              "${training.currentSerie}/${training.tabata.amountSerie}"),
+                          Obx(() => AppTextTheme.Button(
+                              "${training.value.amountSerieDone + 1}/${training.value.tabata.amountSerie}")),
                         ],
                       ),
                       Spacer(flex: 3),
@@ -153,7 +161,7 @@ class Player extends StatelessWidget {
             ),
             SizedBox(width: 8),
             AppTextTheme.Header(
-                '${(Duration(seconds: training.tabata.totalTime))}'
+                '${(Duration(seconds: training.value.tabata.totalTime))}'
                     .split('.')[0]
                     .padLeft(8, '0')
                     .replaceFirst("00:", "")),
