@@ -1,3 +1,5 @@
+import 'package:get/route_manager.dart';
+
 import 'package:darth_vaders_tabata/app/modules/create_tabata/create_tabata_binding.dart';
 import 'package:darth_vaders_tabata/app/modules/create_tabata/create_tabata_page.dart';
 import 'package:darth_vaders_tabata/app/modules/first_access/first_access_binding.dart';
@@ -11,7 +13,6 @@ import 'package:darth_vaders_tabata/app/modules/training_feedback/training_feedb
 import 'package:darth_vaders_tabata/app/modules/tabata_player/tabata_player_binding.dart';
 import 'package:darth_vaders_tabata/app/modules/tabata_player/tabata_player_page.dart';
 import 'package:darth_vaders_tabata/app/routes/routes.dart';
-import 'package:get/route_manager.dart';
 
 abstract class AppPages {
   static final pages = [

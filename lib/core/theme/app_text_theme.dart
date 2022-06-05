@@ -1,6 +1,7 @@
-import 'package:darth_vaders_tabata/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:darth_vaders_tabata/core/theme/app_colors.dart';
 
 abstract class AppTextTheme {
   static final TextStyle _textStyle =

@@ -1,10 +1,9 @@
+import 'package:get/get.dart';
 import 'dart:async';
 
-import 'package:darth_vaders_tabata/app/data/enums/training_status.dart';
 import 'package:darth_vaders_tabata/app/data/models/training_model.dart';
 import 'package:darth_vaders_tabata/app/data/services/training_service.dart';
 import 'package:darth_vaders_tabata/app/routes/routes.dart';
-import 'package:get/get.dart';
 
 class TabataPlayerController extends GetxController {
   late Rx<TrainingModel> training;

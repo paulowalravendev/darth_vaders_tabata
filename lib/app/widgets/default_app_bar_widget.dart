@@ -1,5 +1,6 @@
-import 'package:darth_vaders_tabata/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'package:darth_vaders_tabata/core/theme/app_colors.dart';
 
 class DefaultAppBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override

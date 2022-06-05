@@ -11,10 +11,10 @@ class TabataServiceImpl implements TabataService {
 
 abstract class Mocks {
   static final tabata = TabataModel(
-    timeSerie: 20,
-    amountSerie: 8,
+    timeSerie: 10,
+    amountSerie: 6,
     timeRest: 10,
-    amountCycles: 2,
+    amountCycles: 3,
     intervalBetweenCycles: 10,
   );
 }

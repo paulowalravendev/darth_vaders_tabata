@@ -43,7 +43,7 @@ class TrainingModel {
       }
       totalSeconds += 1;
       currentSerieSecond += 1;
-      if (currentSerieSecond >= 60) {
+      if (currentSerieSecond >= tabata.timeSerie) {
         amountSerieDone += 1;
         currentSerieSecond = 0;
         if (amountSerieDone == tabata.amountSerie) {

@@ -1,5 +1,6 @@
-import 'package:darth_vaders_tabata/app/modules/tabata_player/tabata_player_controller.dart';
 import 'package:get/get.dart';
+
+import 'package:darth_vaders_tabata/app/modules/tabata_player/tabata_player_controller.dart';
 
 class TabataPlayerBinding implements Bindings {
   @override
